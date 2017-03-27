@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Añadir nuevo post</h1>
+    <div>
+        <form method="post" action="{{ action }}" novalidate="novalidate">
+            <div>
+                {{ dump(form.vars.value) }}
+
+                <ul>
+                    {% for error in form.vars.errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            Mensaje: <div>{{ form_label(form.mensaje) }}{{ form_widget((form.mensaje)) }}</div>
+            {{ form_rest(form) }}
+            <div><input type="submit" value="Ok"></div>
+        </form>
+
+    </div>
+{% endblock %}
