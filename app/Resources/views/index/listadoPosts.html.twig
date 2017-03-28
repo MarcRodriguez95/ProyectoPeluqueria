@@ -12,7 +12,7 @@
             <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
             <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
             <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-            {% if (app.user == posts.user) %}
+            {% if (app.user == posts.user) or (app.user.username == "Marc")%}
             <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
             <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
             {% endif %}
