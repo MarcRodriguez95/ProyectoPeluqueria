@@ -102,37 +102,5 @@ class User extends BaseUser
         return $this->username;
     }
 
-    /**
-     * Add post
-     *
-     * @param \Trascastro\UserBundle\Entity\Post $post
-     *
-     * @return User
-     */
-    public function addPost(\Trascastro\UserBundle\Entity\Post $post)
-    {
-        $this->posts[] = $post;
 
-        return $this;
-    }
-
-    /**
-     * Remove post
-     *
-     * @param \Trascastro\UserBundle\Entity\Post $post
-     */
-    public function removePost(\Trascastro\UserBundle\Entity\Post $post)
-    {
-        $this->posts->removeElement($post);
-    }
-
-    /**
-     * Get posts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPosts()
-    {
-        return $this->posts;
-    }
 }
