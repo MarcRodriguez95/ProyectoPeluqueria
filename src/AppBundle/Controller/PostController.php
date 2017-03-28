@@ -36,7 +36,7 @@ class PostController extends Controller
     public function addAction(){
         $post = new Post();
         $form = $this->createForm(MensajeType::class, $post);
-        return $this->render(':index:formulario.html.twig',
+        return $this->render(':index:form.html.twig',
             [
                 'form' => $form->createView(),
                 'action' => $this->generateUrl('app_post_doAdd'),
@@ -63,7 +63,7 @@ class PostController extends Controller
             return $this->redirectToRoute('app_index_index');
         }
 
-        return $this->render(':index:formulario.html.twig',
+        return $this->render(':index:form.html.twig',
             [
                 'form'  => $form->createView(),
                 'action'  => $this->generateUrl('app_post_doAdd')
@@ -83,7 +83,7 @@ class PostController extends Controller
 
         $form = $this->createForm(MensajeType::class, $post);
 
-        return $this->render(':index:formulario.html.twig',
+        return $this->render(':index:form.html.twig',
             [
                 'form' => $form->createView(),
                 'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),
@@ -109,7 +109,7 @@ class PostController extends Controller
             return $this->redirectToRoute('app_index_index');
         }
 
-        return $this->render(':index:formulario.html.twig',
+        return $this->render(':index:form.html.twig',
             [
                 'form' => $form->createView(),
                 'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),

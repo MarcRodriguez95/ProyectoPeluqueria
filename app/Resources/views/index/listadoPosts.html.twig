@@ -12,12 +12,14 @@
             <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
             <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
             <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-            <td><a href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
-            <td><a href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
+            {% if (app.user == posts.user) %}
+            <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
+            <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
+            {% endif %}
         </tr>
     {% endfor %}
 
     <div style="margin-top: 10px">
-        <a href="{{ path('app_post_add') }}">Añadir un post nuevo</a>
+        <a class="btn btn-success" href="{{ path('app_post_add') }}">Añadir un post nuevo</a>
     </div>
 {% endblock %}
