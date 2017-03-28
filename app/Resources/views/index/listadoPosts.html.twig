@@ -4,19 +4,20 @@
 {% block body %}
     <h1> Posts</h1>
     {% for posts in post %}
-
-        <tr>
-            <td>{{ posts.id }}</td> <br>
-            <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
-            <b>Titulo:</b> <td>{{ posts.titulo }}</td> <br>
-            <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
-            <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
-            <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-            {% if (app.user == posts.user) or (app.user.username == "Marc")%}
-            <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
-            <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
-            {% endif %}
-        </tr>
+    <div class="panel panel-primary panel-body">
+            <tr>
+                <td>{{ posts.id }}</td> <br>
+                <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
+                <b>Titulo:</b> <td>{{ posts.titulo }}</td> <br>
+                <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
+                <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
+                <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
+                {% if (app.user == posts.user) or (app.user.username == "Marc")%}
+                <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
+                <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
+                {% endif %}
+            </tr>
+    </div>
     {% endfor %}
 
     <div style="margin-top: 10px">
