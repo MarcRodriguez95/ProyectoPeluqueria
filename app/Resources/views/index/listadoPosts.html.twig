@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends '::base.html.twig' %}
+
+{% block title %} Posts {% endblock %}
+{% block body %}
+    <h1> Posts</h1>
+    {% for posts in post %}
+
+        <tr>
+            <td>{{ posts.id }}</td> <br>
+            <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
+            <b>Titulo:</b> <td>{{ posts.titulo }}</td> <br>
+            <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
+            <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
+            <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
+            <td><a href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
+            <td><a href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
+        </tr>
+    {% endfor %}
+
+    <div style="margin-top: 10px">
+        <a href="{{ path('app_post_add') }}">Añadir un post nuevo</a>
+    </div>
+{% endblock %}

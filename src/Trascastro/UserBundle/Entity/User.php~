@@ -45,10 +45,9 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
-     *
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
      */
-    private $posts;
+    protected $posts;
 
     public function __construct()
     {
