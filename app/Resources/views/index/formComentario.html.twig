@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{%  block title %}Comentario {% endblock %}
+{%  block body  %}
+
+    <div>
+        <form method="post" action="{{ action }}" novalidate="novalidate">
+            <div>
+
+
+            </div>
+            <div>{{ form_label(form.comment) }} : {{ form_widget(form.comment) }}</div>
+            {{ form_rest(form) }}
+
+
+        </form>
+    </div>
+{% endblock %}

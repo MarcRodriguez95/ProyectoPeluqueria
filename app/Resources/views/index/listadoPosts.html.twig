@@ -4,7 +4,8 @@
 {% block body %}
     <h1> Posts</h1>
     {% for posts in post %}
-    <div class="panel panel-primary panel-body">
+        <div class="panel panel-primary">
+        <div class="panel-body">
             <tr>
                 <td>{{ posts.id }}</td> <br>
                 <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
@@ -12,12 +13,30 @@
                 <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
                 <td>{{ posts.createdAt|date('d/m/Y H:i:s') }}</td> <br>
                 <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-                {% if (app.user == posts.user) or (app.user.username == "Marc")%}
-                <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
-                <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
+                {% if (app.user == posts.user) or (app.user == "Marc")%}
+                    <td><a class="btn btn-primary" href="{{ path('app_post_update', {'id': posts.id}) }}">actualizar</a> </td>
+                    <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
                 {% endif %}
             </tr>
-    </div>
+        {% for Comentario in comentario %}
+            <div class="panel panel-default">
+            <div class="panel-body">
+            Id_comentario:       {{ Comentario.id }}<br>
+
+            Comentario:    {{ Comentario.comment }}<br>
+
+
+            {% if app.user == Comentario.usuario or app.user == "Marc" %}
+                <a href="{{ path('app_comment_update', {'id' : Comentario.id}) }}">Editar&nbsp;</a>
+                <a href="{{ path('app_comment_remove', {'id' : Comentario.id}) }}">Borrar</a>
+            {% endif %}
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+        <a class="btn btn-success" href="{{ path('app_comment_add')}}">  Añadir comentario</a>
+        </div>
+        <br><br>
     {% endfor %}
 
     <div style="margin-top: 10px">

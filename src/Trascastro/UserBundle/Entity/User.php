@@ -45,10 +45,17 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
+     * @var string
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user", cascade={"remove"})
      *
      */
-    private $posts;
+    private $post;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="usuario", cascade={"remove"})
+     *
+     */
+    private $comment;
 
     public function __construct()
     {
@@ -56,8 +63,46 @@ class User extends BaseUser
 
         $this->createdAt    = new \DateTime();
         $this->updatedAt    = $this->createdAt;
-        $this->posts        = new ArrayCollection();
+        $this->post        = new ArrayCollection();
+        $this->comment      = new ArrayCollection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPosts()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param mixed $post
+     */
+    public function setPosts($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+
+
+
+
 
     public function setCreatedAt()
     {

@@ -9,3 +9,8 @@ app.post:
     resource: "@AppBundle/Controller/PostController.php"
     type: annotation
     prefix: /posts
+
+app.comment:
+    resource: "@AppBundle/Controller/CommentController.php"
+    type: annotation
+    prefix: /comments

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Post
+ * Comentario
  *
- * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Table(name="comentario")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ComentarioRepository")
  */
-class Post
+class Comentario
 {
     /**
      * @var int
@@ -21,19 +21,14 @@ class Post
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="titulo", type="string", length=255)
-     */
-    private $titulo;
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mensaje", type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255)
      */
-    private $mensaje;
+    private $comment;
 
     /**
      * @var \DateTime
@@ -42,6 +37,8 @@ class Post
      */
     private $createdAt;
 
+
+
     /**
      * @var \DateTime
      *
@@ -49,18 +46,19 @@ class Post
      */
     private $updatedAt;
 
-    /**
-     * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="post")
-     */
-    private $user;
+
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="post")
-     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="comentario")
      */
-    private $comentario;
+    private $post;
+
+    /**
+     * @ORM\Column(name="usuario", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Trascastro\UserBundle\Entity\User", inversedBy="comment")
+     */
+    private $usuario;
 
     public function __construct()
     {
@@ -80,70 +78,68 @@ class Post
     }
 
     /**
-     * Set titulo
+     * Set comment
      *
-     * @param string $titulo
+     * @param string $comment
      *
-     * @return Post
+     * @return Comentario
      */
-    public function setTitulo($titulo)
+    public function setComment($comment)
     {
-        $this->titulo = $titulo;
+        $this->comment = $comment;
 
         return $this;
     }
 
     /**
-     * Get titulo
+     * Get comment
      *
      * @return string
      */
-    public function getTitulo()
+    public function getComment()
     {
-        return $this->titulo;
+        return $this->comment;
     }
 
+
+
     /**
-     * Set mensaje
-     *
-     * @param mixed $mensaje
-     * @return Post
+     * Set post
+     * @return Comentario
+     * @param mixed $post
      */
-    public function setMensaje($mensaje)
+    public function setPost($post)
     {
-        $this->mensaje = $mensaje;
-
-        return $this;
+        $this->post = $post;
     }
 
     /**
-     * Get mensaje
-     *
-     * @return string
-     */
-    public function getMensaje()
-    {
-        return $this->mensaje;
-    }
-
-    /**
-     *
-     *
-     * @param mixed $comentario
-     */
-    public function setComentario($comentario)
-    {
-        $this->comentario = $comentario;
-    }
-
-    /**
-     *
-     *
+     * Get post
      * @return mixed
      */
-    public function getComentario()
+    public function getPost()
     {
-        return $this->comentario;
+        return $this->post;
+    }
+
+    /**
+     * Set usuario
+     * @return Comentario
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
 
@@ -153,7 +149,7 @@ class Post
      *
      * @param \DateTime $createdAt
      *
-     * @return Post
+     * @return Comentario
      */
     public function setCreatedAt($createdAt)
     {
@@ -175,9 +171,9 @@ class Post
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param string $updatedAt
      *
-     * @return Post
+     * @return Comentario
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -189,35 +185,12 @@ class Post
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return string
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
-
-
-    /**
-     * Set user
-     *
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-        return $this;
-    }
-    /**
-     * Get user
-     *
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-
 
 }
 

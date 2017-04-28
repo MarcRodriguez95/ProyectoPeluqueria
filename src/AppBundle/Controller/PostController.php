@@ -20,11 +20,14 @@ class PostController extends Controller
     {
         $a = $this->getDoctrine()->getManager();
         $repositorio = $a->getRepository('AppBundle:Post');
+        $repo = $a->getRepository('AppBundle:Comentario');
         $a->flush();
         $post = $repositorio->findAll();
+        $comentario = $repo->findAll();
         return $this->render(':index:listadoPosts.html.twig',
             [
-                'post' => $post
+                'post' => $post,
+                'comentario' => $comentario,
             ]);
     }
 
@@ -134,5 +137,8 @@ class PostController extends Controller
 
         return $this->redirectToRoute('app_index_index');
     }
+
+
+
 
 }
