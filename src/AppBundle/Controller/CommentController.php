@@ -34,32 +34,36 @@ class CommentController extends Controller
     }
 
     /**
-     * @Route (path="/commAdd", name="app_comment_add")
+     * @Route (path="/commAdd/{id}", name="app_comment_add")
      * @Security("has_role('ROLE_USER')")
      */
-    public function commentAddAction()
+    public function commentAddAction($id)
     {
         $Comentario = new Comentario();
         $form = $this->createForm(ComentarioType::class, $Comentario);
         return $this->render(':index:formComentario.html.twig',
             [
                 'form'      => $form->createView(),
-                'action'    => $this->generateUrl('app_comment_doAdd')
+                'action'    => $this->generateUrl('app_comment_doAdd', ['id' => $id])
             ]
         );
     }
 
     /**
-     * @Route (path="/commDoAdd", name="app_comment_doAdd")
+     * @Route (path="/commDoAdd/{id}", name="app_comment_doAdd")
      * @Security("has_role('ROLE_USER')")
      */
-    public function commentDoAddAction(Request $request)
+    public function commentDoAddAction(Request $request, Post $id)
     {
-        $Comentario = new Comentario();
+        $a = $this->getDoctrine()->getManager();
+        $r = $a->getRepository('AppBundle:Post');
+        $Comentario =  new Comentario();
+        $post = $r->find($id);
         $form = $this->createForm(ComentarioType::class, $Comentario);
         $form->handleRequest($request);
         if($form->isValid())
         {
+            $Comentario->setPost($post);
             $user = $this->getUser();
             $Comentario->setUsuario($user);
             $m = $this->getDoctrine()->getManager();
@@ -70,7 +74,7 @@ class CommentController extends Controller
         return $this->render(':index:listadoPosts.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_comment_doAdd')
+                'action' => $this->generateUrl('app_comment_doAdd', ['id' => $id])
             ]);
     }
 

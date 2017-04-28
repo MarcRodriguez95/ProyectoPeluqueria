@@ -18,7 +18,8 @@
                     <td><a class="btn btn-default" href="{{ path('app_post_remove', {'id': posts.id}) }}">eliminar</a> </td> <br>
                 {% endif %}
             </tr>
-        {% for Comentario in comentario %}
+        {% for Comentario in posts.getComentario %}
+
             <div class="panel panel-default">
             <div class="panel-body">
             Id_comentario:       {{ Comentario.id }}<br>
@@ -27,14 +28,14 @@
 
 
             {% if app.user == Comentario.usuario or app.user == "Marc" %}
-                <a href="{{ path('app_comment_update', {'id' : Comentario.id}) }}">Editar&nbsp;</a>
-                <a href="{{ path('app_comment_remove', {'id' : Comentario.id}) }}">Borrar</a>
+                <a class="btn btn-primary" href="{{ path('app_comment_update', {'id' : Comentario.id}) }}">Editar&nbsp;</a>
+                <a class="btn btn-default" href="{{ path('app_comment_remove', {'id' : Comentario.id}) }}">Borrar</a>
             {% endif %}
             </div>
             </div>
         {% endfor %}
         </div>
-        <a class="btn btn-success" href="{{ path('app_comment_add')}}">  Añadir comentario</a>
+        <a class="btn btn-success" href="{{ path('app_comment_add', {'id': posts.id})}}">  Añadir comentario</a>
         </div>
         <br><br>
     {% endfor %}
