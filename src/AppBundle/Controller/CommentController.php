@@ -108,24 +108,29 @@ class CommentController extends Controller
      */
     public function doUpdateAction($id, Request $request)
     {
-        $a = $this->getDoctrine()->getManager();
-        $repositorio = $a->getRepository('AppBundle:Comentario');
-        $comment = $repositorio->find($id);
-        $form = $this->createForm(ComentarioType::class, $comment);
+        $Post = $comentario->getPost();
 
-        $form->handleRequest($request);
-        if ($form->isValid()){
-            $a->flush();
+        if ($this->getUser() == $comentario->getUsuario() or $this->getUser() == 'Marc' or $this->getUser() == $Post->getUsuario()) {
+            $a = $this->getDoctrine()->getManager();
+            $repositorio = $a->getRepository('AppBundle:Comentario');
+            $comment = $repositorio->find($id);
+            $form = $this->createForm(ComentarioType::class, $comment);
 
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $a->flush();
+
+                return $this->redirectToRoute('app_index_index');
+            }
+
+            return $this->render(':index:formComentario.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),
+                ]);
+        }else{
             return $this->redirectToRoute('app_index_index');
         }
-
-        return $this->render(':index:formComentario.html.twig',
-            [
-                'form' => $form->createView(),
-                'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),
-            ]);
-
     }
 
     /**
@@ -134,12 +139,19 @@ class CommentController extends Controller
      */
     public function removeAction(Comentario $comentario)
     {
-        $a = $this->getDoctrine()->getManager();
-        $a->remove($comentario);
-        $a->flush();
 
-        $this->addFlash('messages', 'comentario eliminado');
+        $Post = $comentario->getPost();
 
-        return $this->redirectToRoute('app_index_index');
+        if ($this->getUser() == $comentario->getUsuario() or $this->getUser() == 'Marc' or $this->getUser() == $Post->getUsuario()) {
+            $a = $this->getDoctrine()->getManager();
+            $a->remove($comentario);
+            $a->flush();
+
+            $this->addFlash('messages', 'comentario eliminado');
+
+            return $this->redirectToRoute('app_index_index');
+        }else{
+            return $this->redirectToRoute('app_index_index');
+        }
     }
 }
