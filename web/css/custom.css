@@ -19,3 +19,34 @@
 .margin-bottom-lg {
     margin-bottom: 30px;
 }
+/*Aqui empieza mis cambios en el css*/
+/*
+body{
+    padding-left: 10%;
+}
+.container-fluid{
+    padding-right: 10%;
+}
+
+.text-right{
+    padding-right: 10%;
+}
+
+.margin-bottom-md{
+    padding-right: 10%;
+}
+*/
+.columna-izquierda{
+    background-color: slategrey;
+    height: 1000px;
+    bottom:0.8em;
+    border: 20px solid slategrey;
+    transform: translate(-90px,0px); /* Standard syntax */
+}
+.columna-derecha{
+    background-color: slategrey;
+    height: 1000px;
+    bottom:0.8em;
+    border: 20px solid slategrey;
+    transform: translate(90px,0px); /* Standard syntax */
+}

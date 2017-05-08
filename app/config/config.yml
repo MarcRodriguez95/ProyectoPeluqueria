@@ -51,6 +51,12 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+        jpegoptim:
+            bin: path/to/jpegoptim
+    twig:
+        functions:
+            jpegoptim: ~
+
 
 # Swiftmailer Configuration
 # https://www.google.com/settings/security/lesssecureapps (allow apps login)

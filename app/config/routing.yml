@@ -1,8 +1,8 @@
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
 
-app.index:
-    resource: "@AppBundle/Controller/IndexController.php"
+app.inicio:
+    resource: "@AppBundle/Controller/InicioController.php"
     type: annotation
 
 app.post:
@@ -14,3 +14,4 @@ app.comment:
     resource: "@AppBundle/Controller/CommentController.php"
     type: annotation
     prefix: /comments
+
