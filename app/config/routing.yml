@@ -15,3 +15,7 @@ app.comment:
     type: annotation
     prefix: /comments
 
+app.contacto:
+    resource: "@AppBundle/Controller/ContactoController.php"
+    type: annotation
+    prefix: /contacto
