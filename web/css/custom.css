@@ -20,22 +20,7 @@
     margin-bottom: 30px;
 }
 /*Aqui empieza mis cambios en el css*/
-/*
-body{
-    padding-left: 10%;
-}
-.container-fluid{
-    padding-right: 10%;
-}
 
-.text-right{
-    padding-right: 10%;
-}
-
-.margin-bottom-md{
-    padding-right: 10%;
-}
-*/
 .columna-izquierda{
     background-color: slategrey;
     height: 1000px;
@@ -54,4 +39,16 @@ body{
 .masthead img{
     width:100%;
     margin-top: -50px;
+}
+
+@media only screen and (max-width: 991px) {
+    .columna-izquierda {
+        display: none;
+    }
+
+    .columna-derecha {
+        display: none;
+    }
+
+
 }

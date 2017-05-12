@@ -6,5 +6,5 @@ fos_user:
         confirmation:
             enabled: false
     from_email:
-        address:        youremailaccount@gmail.com
-        sender_name:    YourSenderName
+        address:        marc.rodriguez451@gmail.com
+        sender_name:    Marc Rodríguez
