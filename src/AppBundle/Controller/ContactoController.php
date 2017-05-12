@@ -84,7 +84,7 @@ class ContactoController extends Controller
                 ->setSubject($subject)
                 ->setFrom($email)
                 ->setTo('andres.perruquers@gmail.com')
-                ->setBody($this->renderView(':Proyecto:enviarEmail.html.twig',array('name' => $name)),'text/html');
+                ->setBody($this->renderView(':Proyecto:enviarEmail.html.twig',array('name' => $name, 'email' => $email, 'message' => $message)),'text/html');
             $this->get('mailer')->send($message);
 
             return $this->redirectToRoute('app_proyecto_contacto');
