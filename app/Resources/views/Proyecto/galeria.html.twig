@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends '::base.html.twig' %}
 
-</body>
-</html>
+{% block title %} Galería de imagenes {% endblock %}
+{% block body %}
+    <h1> Galería de imagenes</h1>
+    {% for imagenes in galeria %}
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <tr>
+                    <td><img src="{{ asset('../images/galeria/' ~ imagenes.imageFile) }}"/></td> <br>
+                    <b>Titulo:</b> <td>{{ imagenes.titulo }}</td> <br>
+                    <b>Mensaje:</b> <br> <td>{{ imagenes.mensaje }}</td> <br>
+                    <td>{{ imagenes.createdAt|date('d/m/Y H:i:s') }}</td> <br>
+                    <td>{{ imagenes.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
+                    {% if (app.user == "Marc")%}
+                        <td><a class="btn btn-primary" href="{{ path('app_imagen_update', {'id': imagenes.id}) }}">actualizar</a> </td>
+                        <td><a class="btn btn-default" href="{{ path('app_imagen_remove', {'id': imagenes.id}) }}">eliminar</a> </td> <br>
+                    {% endif %}
+                </tr>
+
+            </div>
+
+        </div>
+        <br><br>
+    {% endfor %}
+
+    <div style="margin-top: 10px">
+    {% if (app.user == "Marc")%}
+        <a class="btn btn-success" href="{{ path('app_imagen_add') }}">Añadir una imagen nueva</a>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -3,5 +3,5 @@ vich_uploader:
 
     mappings:
         image_upload:
-            uri_prefix:         /images/upload
-            upload_destination: %kernel.root_dir%/../web/images/upload
+            uri_prefix:         /images/galeria
+            upload_destination: %kernel.root_dir%/../web/images/galeria

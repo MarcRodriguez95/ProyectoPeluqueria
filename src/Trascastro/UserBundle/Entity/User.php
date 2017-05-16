@@ -57,6 +57,12 @@ class User extends BaseUser
      */
     private $comment;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DescripcionImagen", mappedBy="usuario", cascade={"remove"})
+     */
+    private $imagen;
+
     public function __construct()
     {
         parent::__construct();
@@ -100,6 +106,22 @@ class User extends BaseUser
     }
 
 
+
+    /**
+     * @return mixed
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
+     * @param mixed $imagen
+     */
+    public function setImagen($imagen)
+    {
+        $this->imagen = $imagen;
+    }
 
 
 

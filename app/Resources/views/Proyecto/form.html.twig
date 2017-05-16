@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+{%  block title %}Form {% endblock %}
+{%  block body  %}
+
+    <div>
+        <form method="post" enctype="multipart/form-data" action="{{ action }}" novalidate="novalidate">
+            <div>
+
+
+            </div>
+            <div>{{ form_label(form.titulo) }}: {{ form_widget(form.titulo, {'attr' : { 'class' : 'anyClass2'}}) }}</div>
+            <div>{{ form_label(form.categoria) }} : {{ form_widget(form.categoria) }}</div>
+            <div>{{ form_label(form.mensaje) }} : {{ form_widget(form.mensaje) }}</div>
+            <div>{{ form_label(form.imageFile) }} : {{ form_widget(form.imageFile) }}</div>
+            {{ form_rest(form) }}
+
+
+        </form>
+    </div>
+{% endblock %}

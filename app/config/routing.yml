@@ -20,3 +20,7 @@ app.contact:
     type: annotation
     prefix: /contact
 
+app.galeria:
+    resource: "@AppBundle/Controller/GaleriaController.php"
+    type: annotation
+    prefix: /galeria
