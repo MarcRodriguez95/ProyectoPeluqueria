@@ -60,7 +60,7 @@ class GaleriaController extends Controller
             $m = $this->getDoctrine()->getManager();
             $m->persist($descripcion_imagen);
             $m->flush();
-            return $this->redirectToRoute('app_proyecto_inicio');
+            return $this->redirectToRoute('app_proyecto_galeria');
         }
 
         return $this->render(':index:form.html.twig',
@@ -107,7 +107,7 @@ class GaleriaController extends Controller
         if ($form->isValid()){
             $a->flush();
 
-            return $this->redirectToRoute('app_proyecto_inicio');
+            return $this->redirectToRoute('app_proyecto_galeria');
         }
 
         return $this->render(':index:form.html.twig',
@@ -133,6 +133,6 @@ class GaleriaController extends Controller
 
         $this->addFlash('messages', 'imagen eliminada');
 
-        return $this->redirectToRoute('app_proyecto_inicio');
+        return $this->redirectToRoute('app_proyecto_galeria');
     }
 }

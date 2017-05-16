@@ -9,7 +9,8 @@
                 <tr>
                     <td><img src="{{ asset('../images/galeria/' ~ imagenes.imageFile) }}"/></td> <br>
                     <b>Titulo:</b> <td>{{ imagenes.titulo }}</td> <br>
-                    <b>Mensaje:</b> <br> <td>{{ imagenes.mensaje }}</td> <br>
+                    <b>Categoria:</b> <td>{{ imagenes.categoria }}</td> <br>
+                    <b>Mensaje:</b>  <td>{{ imagenes.mensaje }}</td> <br><br>
                     <td>{{ imagenes.createdAt|date('d/m/Y H:i:s') }}</td> <br>
                     <td>{{ imagenes.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
                     {% if (app.user == "Marc")%}
