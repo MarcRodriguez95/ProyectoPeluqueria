@@ -25,9 +25,7 @@ class DescripcionImagenType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
             ])
-            ->add('rating', RatingType::class, [
-                'label' => 'Rating'
-            ])
+
             ->add('Guardar',SubmitType::class);
     }
 
