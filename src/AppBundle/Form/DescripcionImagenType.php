@@ -8,11 +8,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\DescripcionImagen;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use blackknight467\StarRatingBundle\Form\RatingType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+
 class DescripcionImagenType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('titulo')
             ->add('mensaje')
             ->add('categoria')
@@ -20,6 +24,9 @@ class DescripcionImagenType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
+            ])
+            ->add('rating', RatingType::class, [
+                'label' => 'Rating'
             ])
             ->add('Guardar',SubmitType::class);
     }

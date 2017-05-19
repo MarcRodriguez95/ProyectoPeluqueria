@@ -7,12 +7,13 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <tr>
-                    <td><img src="{{ asset('../images/galeria/' ~ imagenes.imageFile) }}"/></td> <br>
-                    <b>Titulo:</b> <td>{{ imagenes.titulo }}</td> <br>
+                    <td><img style="width: 120px; height: 120px" src="{{ asset('images/galeria/' ~ imagenes.titulo) }}"/></td> <br>
+
                     <b>Categoria:</b> <td>{{ imagenes.categoria }}</td> <br>
                     <b>Mensaje:</b>  <td>{{ imagenes.mensaje }}</td> <br><br>
                     <td>{{ imagenes.createdAt|date('d/m/Y H:i:s') }}</td> <br>
                     <td>{{ imagenes.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
+                    {{ 0|rating(5, "fa-3x") }}
                     {% if (app.user == "Marc")%}
                         <td><a class="btn btn-primary" href="{{ path('app_imagen_update', {'id': imagenes.id}) }}">actualizar</a> </td>
                         <td><a class="btn btn-default" href="{{ path('app_imagen_remove', {'id': imagenes.id}) }}">eliminar</a> </td> <br>
@@ -30,4 +31,7 @@
         <a class="btn btn-success" href="{{ path('app_imagen_add') }}">Añadir una imagen nueva</a>
     {% endif %}
     </div>
+
+
+
 {% endblock %}

@@ -24,3 +24,14 @@ app.galeria:
     resource: "@AppBundle/Controller/GaleriaController.php"
     type: annotation
     prefix: /galeria
+
+app.hora:
+    resource: "@AppBundle/Controller/PedirHoraController.php"
+    type: annotation
+    prefix: /pedir-hora
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+adesigns_calendar:
+  resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"

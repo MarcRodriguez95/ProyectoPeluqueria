@@ -63,7 +63,7 @@ class GaleriaController extends Controller
             return $this->redirectToRoute('app_proyecto_galeria');
         }
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:form.html.twig',
             [
                 'form'  => $form->createView(),
                 'action'  => $this->generateUrl('app_imagen_doAdd')
@@ -84,7 +84,7 @@ class GaleriaController extends Controller
 
         $form = $this->createForm(DescripcionImagenType::class, $imagen);
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:form.html.twig',
             [
                 'form' => $form->createView(),
                 'action' => $this->generateUrl('app_imagen_doUpdate', ['id' => $id]),
@@ -110,7 +110,7 @@ class GaleriaController extends Controller
             return $this->redirectToRoute('app_proyecto_galeria');
         }
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:form.html.twig',
             [
                 'form' => $form->createView(),
                 'action' => $this->generateUrl('app_imagen_doUpdate', ['id' => $id]),

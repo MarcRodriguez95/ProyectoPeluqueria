@@ -32,12 +32,6 @@ class DescripcionImagen
      */
     private $titulo;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
-     */
-    private $imageFile_name;
 
     /**
      * @var string
@@ -53,9 +47,11 @@ class DescripcionImagen
      */
     private $categoria;
 
+
+
     /**
      *
-     * @Vich\UploadableField(mapping="product_image")
+     * @Vich\UploadableField(mapping="product_image", fileNameProperty="titulo")
      *
      * @var File
      */
@@ -209,33 +205,19 @@ class DescripcionImagen
         return $this;
     }
 
+
+
     /**
-     * @return File|null
+     * @return File
      */
     public function getImageFile()
     {
         return $this->imageFile;
     }
 
-    /**
-     * @param string $imageFile_name
-     *
-     * @return DescripcionImagen
-     */
-    public function imageFileName($imageFile_name)
-    {
-        $this->imageFile_name = $imageFile_name;
 
-        return $this;
-    }
 
-    /**
-     * @return string
-     */
-    public function getimageFileName()
-    {
-        return $this->imageFile_name;
-    }
+
 
 
     /**

@@ -21,6 +21,9 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new AppBundle\AppBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

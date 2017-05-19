@@ -31,6 +31,7 @@
 .columna-derecha{
     background-color: slategrey;
     height: 1000px;
+    max-height: 100%;
     bottom:2.1em;
     border: 20px solid slategrey;
     transform: translate(90px,0px); /* Standard syntax */
