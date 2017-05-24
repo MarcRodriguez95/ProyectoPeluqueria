@@ -2,11 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use blackknight467\StarRatingBundle\Form\RatingType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use DoctrineExtensions\Taggable\Taggable;
 /**
  * DescripcionImagen
  *
@@ -14,7 +16,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DescripcionImagenRepository")
  * @Vich\Uploadable
  */
-class DescripcionImagen
+class DescripcionImagen implements Taggable
 {
     /**
      * @var int
@@ -24,6 +26,8 @@ class DescripcionImagen
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+
 
     /**
      * @var string
@@ -47,6 +51,7 @@ class DescripcionImagen
      */
     private $categoria;
 
+    private $tags;
 
 
     /**
@@ -56,6 +61,14 @@ class DescripcionImagen
      * @var File
      */
     private $imageFile;
+
+    /**
+     * @var RatingType
+     * @ORM\Column(name="rating")
+     */
+    private $rating;
+
+
 
 
     /**
@@ -215,6 +228,22 @@ class DescripcionImagen
         return $this->imageFile;
     }
 
+    /**
+     * @return RatingType
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param RatingType $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
 
 
 
@@ -266,6 +295,25 @@ class DescripcionImagen
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+
+
+    public function getTags()
+    {
+        $this->tags = $this->tags ?: new ArrayCollection();
+
+        return $this->tags;
+    }
+
+    public function getTaggableType()
+    {
+        return 'acme_tag';
+    }
+
+    public function getTaggableId()
+    {
+        return $this->getId();
     }
 }
 

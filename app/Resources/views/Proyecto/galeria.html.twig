@@ -1,31 +1,38 @@
 {% extends '::base.html.twig' %}
 
+
 {% block title %} Galería de imagenes {% endblock %}
 {% block body %}
+
+
     <h1> Galería de imagenes</h1>
     {% for imagenes in galeria %}
-        <div class="panel panel-primary">
+        <div class="panel panel-primary col-sm-6 col-md-4">
             <div class="panel-body">
                 <tr>
-                    <td><img style="width: 120px; height: 120px" src="{{ asset('images/galeria/' ~ imagenes.titulo) }}"/></td> <br>
+                    <td><img style="width: 120px; height: 120px" src="{{ asset('images/galeria/' ~ imagenes.titulo) }}"/></td>
 
-                    <b>Categoria:</b> <td>{{ imagenes.categoria }}</td> <br>
-                    <b>Mensaje:</b>  <td>{{ imagenes.mensaje }}</td> <br><br>
-                    <td>{{ imagenes.createdAt|date('d/m/Y H:i:s') }}</td> <br>
-                    <td>{{ imagenes.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-                    {{ 0|rating(5, "fa-3x") }}
+                    <b>Categoria:</b> <td>{{ imagenes.categoria }}</td><br>
+                    <b>Mensaje:</b>  <td>{{ imagenes.mensaje }}</td><br>
+                    {{ imagenes.rating|rating(5, "fa-1x") }}
+                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fandres-perruquers.herokuapp.com%2F&width=143&layout=button&action=like&size=small&show_faces=true&share=true&height=65&appId" width="143" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                    <br>
+
                     {% if (app.user == "Marc")%}
                         <td><a class="btn btn-primary" href="{{ path('app_imagen_update', {'id': imagenes.id}) }}">actualizar</a> </td>
-                        <td><a class="btn btn-default" href="{{ path('app_imagen_remove', {'id': imagenes.id}) }}">eliminar</a> </td> <br>
+                        <td><a class="btn btn-default" href="{{ path('app_imagen_remove', {'id': imagenes.id}) }}">eliminar</a> </td>
                     {% endif %}
                 </tr>
 
             </div>
 
         </div>
-        <br><br>
+
     {% endfor %}
 
+   {% include ':Proyecto:pagination.html.twig' %}
+
+    <br>
     <div style="margin-top: 10px">
     {% if (app.user == "Marc")%}
         <a class="btn btn-success" href="{{ path('app_imagen_add') }}">Añadir una imagen nueva</a>
@@ -34,4 +41,7 @@
 
 
 
+
+
 {% endblock %}
+

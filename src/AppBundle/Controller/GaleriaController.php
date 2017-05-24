@@ -8,23 +8,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Cookie;
+use AppBundle\Entity\starratingsystem;
 use AppBundle\Entity\DescripcionImagen;
 use Trascastro\UserBundle\Form\UserBundle;
-
+use AppBundle\Entity\items;
 class GaleriaController extends Controller
 {
     /**
      * @Route (path="/", name="app_proyecto_galeria")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $m = $this->getDoctrine()->getManager();
+        $repo = $m->getRepository('AppBundle:items');
+        $m->flush();
+
+        $listItems = $repo->findBy(
+            array(),                      // Critere
+            array('id' => 'asc'),        // Tri
+            null,                         // Limite
+            null                          // Offset
+        );
+
+
         $a = $this->getDoctrine()->getManager();
         $repositorio = $a->getRepository('AppBundle:DescripcionImagen');
         $a->flush();
-        $galeria = $repositorio->findAll();
+        $queryGaleria = $repositorio->findAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $queryGaleria,
+            $request->query->getInt('page', 1),
+            6
+        );
         return $this->render(':Proyecto:galeria.html.twig',
             [
-                'galeria' => $galeria,
+                'galeria' => $pagination,
+                'listItems' => $listItems,
             ]);
     }
 
@@ -135,4 +158,42 @@ class GaleriaController extends Controller
 
         return $this->redirectToRoute('app_proyecto_galeria');
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function updateStar(Request $request)
+    {
+        $mediaId = $request->get('mediaId');
+        $rate = $request->get('rate');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $rateExists = $em->createQuery('SELECT s.id FROM AppBundle:starratingsystem s WHERE s.media = :media')
+            ->setParameter('media', $mediaId)
+            ->getResult();
+
+        if ($rateExists != null) {
+            $q = $em->createQuery('UPDATE AppBundle:starratingsystem s SET s.rate = s.rate + '.$rate.', s.nbrrate = s.nbrrate + 1 WHERE s.media = ?1')
+                ->setParameter(1, $mediaId);
+            $q->execute();
+        } else {
+            $newRate = new starratingsystem;
+            $newRate->setMedia($mediaId);
+            $newRate->setRate($rate);
+            $newRate->setNbrrate(1);
+            $em->persist($newRate);
+            $em->flush();
+        }
+
+        $query = $em->createQuery('SELECT s.rate, s.nbrrate FROM AppBundle:starratingsystem s WHERE s.media = :media')
+            ->setParameter('media', $mediaId);
+        $result = $query->getResult();
+
+        $response = new JsonResponse();
+        $response->setData(array('avg' => round($result[0]['rate'] / $result[0]['nbrrate'], 2), 'nbrRate' => $result[0]['nbrrate']));
+        return $response;
+    }
+
 }

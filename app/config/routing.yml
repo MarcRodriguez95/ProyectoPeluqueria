@@ -30,6 +30,11 @@ app.hora:
     type: annotation
     prefix: /pedir-hora
 
+app.quienes:
+    resource: "@AppBundle/Controller/QuienesSomosController.php"
+    type: annotation
+    prefix: /quienes-somos
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 

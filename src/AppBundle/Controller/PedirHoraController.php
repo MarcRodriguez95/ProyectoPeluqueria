@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\PedirHora;
 use Trascastro\UserBundle\Form\UserBundle;
-use AppBundle\Event\HorarioEvent;
+
 
 class PedirHoraController extends Controller
 {
