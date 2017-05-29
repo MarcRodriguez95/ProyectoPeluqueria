@@ -1,17 +1,19 @@
 
-{% block body %}
+{% extends '::base.html.twig' %}
+{%  block title %}Form {% endblock %}
+{%  block body  %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h2 class=page-header>Contact Form in Symfony</h2>
+    <div>
+        <form method="post" action="{{ action }}" novalidate="novalidate">
+            <div>
 
-                {{form_start(form)}}
-                {{form_widget(form)}}
-                {{form_end(form)}}
 
             </div>
-        </div>
-    </div>
+            <div>{{ form_label(form.titulo) }}: {{ form_widget(form.titulo, {'attr' : { 'class' : 'anyClass2'}}) }}</div>
+            <div>{{ form_label(form.mensaje) }} : {{ form_widget(form.mensaje) }}</div>
+            {{ form_rest(form) }}
 
+
+        </form>
+    </div>
 {% endblock %}

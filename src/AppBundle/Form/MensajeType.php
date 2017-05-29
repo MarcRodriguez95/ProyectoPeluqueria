@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Post;
+use blackknight467\StarRatingBundle\Form\RatingType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,9 @@ class MensajeType extends AbstractType
         $builder
             ->add('titulo')
             ->add('mensaje')
+            ->add('rating', RatingType::class, [
+                'label' => 'Rating'
+            ])
             ->add('Guardar',SubmitType::class);
     }
 

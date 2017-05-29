@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+{%  block title %}Escribe tus opiniones sobre Andres Perruquers {% endblock %}
+{%  block body  %}
+
+<div>
+    <form method="post" action="{{ action }}" novalidate="novalidate">
+        <div>
+
+        </div>
+        <div>{{ form_label(form.titulo) }}: {{ form_widget(form.titulo, {'attr' : { 'class' : 'anyClass2'}}) }}</div>
+        <div>{{ form_label(form.mensaje) }} : {{ form_widget(form.mensaje) }}</div>
+        {{ form_rest(form) }}
+
+
+    </form>
+</div>
+{% endblock %}

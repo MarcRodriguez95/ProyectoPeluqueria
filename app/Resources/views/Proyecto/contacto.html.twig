@@ -1,12 +1,55 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.159910456644!2d2.09657011507964!3d41.327135979269805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49edb872479e5%3A0x248fd4a04669fc12!2sAndr%C3%A9s+Perruquers!5e0!3m2!1ses!2ses!4v1494262563251" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-    <div>
-        <a class="btn btn-success" href="{{ path('app_proyecto_email') }}" >Envia un email</a>
+<h1>Contacto</h1><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4 style="font-family: Geneva, Arial, Helvetica, sans-serif; ">La localización de la peluqueria es la siguiente</h4>
+        </div>
     </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-10 gmap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.159910456644!2d2.09657011507964!3d41.327135979269805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49edb872479e5%3A0x248fd4a04669fc12!2sAndr%C3%A9s+Perruquers!5e0!3m2!1ses!2ses!4v1494262563251" width="650" height="400" frameborder="0" style="border:#7c8ea3" allowfullscreen></iframe>
+        </div>
+
+    </div>
+</div>
+
+    <br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <p>
+            Andres Perruquers<br>
+            Av. de la Verge de Montserrat, 45D<br>
+            08820 El Prat de Llobregat, Barcelona<br>
+            andres.perruquers@gmail.com<br>
+            </p>
+        </div>
+    </div>
+</div>
+
+    <br>
+
+<div class="container-fluid">
+    <div class="row">
+         <div class="col-md-10 col-sm-10">
+                <p>Si quieres preguntar cualquier cosa o tienes algunas dudas sobre ciertos temas de la peluquería, puedes contactar con nosotros rellenando el siguiente formulario mediante el botón "Enviar consulta"</p>
+         </div>
+
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-success" href="{{ path('app_proyecto_email') }}" >Enviar consulta</a>
+        </div>
+    </div>
+</div>
+
+
 
 
 

@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Opiniones de los clientes sobre Andres Perruquers {% endblock %}
+{% block body %}
+    <h1>Opiniones Peluquería</h1>
+    <h4>Aquí puedes comentar tus opiniones acerca de la peluquería</h4>
+    {% for posts in post %}
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <tr>
+                    <td>{{ posts.id }}</td> <br>
+                    <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
+                    <b>Titulo:</b> <td>{{ posts.titulo }}</td> <br>
+                    <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
+                    <td>{{ posts.updatedAt|date('d/m/Y H:i:s') }}</td> <br><br>
+                    <td>{{ posts.rating|rating(5, "fa-1x") }}</td> <br>
+                    {% if (app.user == posts.user) or (app.user == "Marc")%}
+                        <td><a class="btn btn-primary" href="{{ path('app_proyecto_updateExperiencia', {'id': posts.id}) }}">actualizar</a> </td>
+                        <td><a class="btn btn-default" href="{{ path('app_proyecto_removeExperiencia', {'id': posts.id}) }}">eliminar</a> </td> <br>
+                    {% endif %}
+                </tr>
+
+            </div>
+        </div>
+        <br><br>
+    {% endfor %}
+
+    <div style="margin-top: 10px">
+        <a class="btn btn-success" href="{{ path('app_proyecto_addExperiencia') }}">Añadir un post nuevo</a>
+    </div>
+
+    {% if not doPagination is defined %}
+        <div class="navigation">
+            {{ knp_pagination_render(post) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

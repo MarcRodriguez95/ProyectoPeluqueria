@@ -60,7 +60,8 @@
                 <li class="active"><a href="{{ path('app_proyecto_inicio') }}">Inicio</a></li>
                 <li><a href="{{ path('app_proyecto_galeria') }}">Galeria de imagenes</a></li>
                 <li><a href="{{ path('app_proyecto_quienesSomos') }}">Quienes somos?</a></li>
-                <li><a href="{{ path('app_proyecto_pedirHora') }}">Pedir Hora</a></li>
+                <li><a href="{{ path('app_proyecto_mensajes') }}">Opiniones Peluqueria</a></li>
+                <!--<li><a href="{{ path('app_proyecto_pedirHora') }}">Pedir Hora</a></li>-->
                 <li><a href="{{ path('app_proyecto_contacto') }}">Contacto</a></li>
 
 
@@ -84,12 +85,12 @@
     </ul>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-2 columna-izquierda"></div>
 
 
-        <div class="col-md-8">
+        <div class="col-md-8 fondo">
             {% block body %}{% endblock %}
         </div>
         <!-- /sidebar
@@ -108,11 +109,15 @@
 
         </div>
     </div>
+</div>
 
-    <footer>
+    <footer class="footer navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
 
+        <p class="direccion">Andres Perruquers · Avenida Montserrat · andres.perruquers@gmail.com · 626188095</p>
+        </div>
     </footer>
-</div> <!-- /container -->
+   <!-- /container -->
 
 {% block javascripts %}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

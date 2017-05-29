@@ -14,41 +14,47 @@ use Trascastro\UserBundle\Form\UserBundle;
 class PostController extends Controller
 {
     /**
-     * @Route (path="/", name="app_post_listado")
+     * @Route (path="/", name="app_proyecto_mensajes")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $a = $this->getDoctrine()->getManager();
         $repositorio = $a->getRepository('AppBundle:Post');
-        $repo = $a->getRepository('AppBundle:Comentario');
         $a->flush();
-        $post = $repositorio->findAll();
-        $comentario = $repo->findAll();
-        return $this->render(':index:listadoPosts.html.twig',
+        $queryExperiencia = $repositorio->findAll();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $queryExperiencia,
+            $request->query->getInt('page', 1),
+            2
+        );
+        return $this->render(':Proyecto:experienciaPeluqueria.html.twig',
             [
-                'post' => $post,
-                'comentario' => $comentario,
+                'post' => $pagination,
             ]);
+
+
+
     }
 
     /**
-     * @Route(path="/add", name="app_post_add")
+     * @Route(path="/add", name="app_proyecto_addExperiencia")
      * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
      */
     public function addAction(){
         $post = new Post();
         $form = $this->createForm(MensajeType::class, $post);
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:formExperienciaPeluqueria.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_post_doAdd'),
+                'action' => $this->generateUrl('app_proyecto_doAddExperiencia'),
             ]);
     }
 
     /**
      * @param Request $request
-     * @Route (path="/doAdd", name="app_post_doAdd")
+     * @Route (path="/doAdd", name="app_proyecto_doAddExperiencia")
      * @Security("has_role('ROLE_USER')")
      */
     public function doAddAction(Request $request){
@@ -63,18 +69,18 @@ class PostController extends Controller
             $m = $this->getDoctrine()->getManager();
             $m->persist($post);
             $m->flush();
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_proyecto_mensajes');
         }
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:formExperienciaPeluqueria.html.twig',
             [
                 'form'  => $form->createView(),
-                'action'  => $this->generateUrl('app_post_doAdd')
+                'action'  => $this->generateUrl('app_proyecto_doAddExperiencia')
             ]);
     }
 
     /**
-     * @Route (path="/update/{id}", name="app_post_update")
+     * @Route (path="/update/{id}", name="app_proyecto_updateExperiencia")
      * @return \Symfony\Component\HttpFoundation\Response
      * @Security("has_role('ROLE_USER')")
      */
@@ -86,15 +92,15 @@ class PostController extends Controller
 
         $form = $this->createForm(MensajeType::class, $post);
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:formExperienciaPeluqueria.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),
+                'action' => $this->generateUrl('app_proyecto_doUpdateExperiencia', ['id' => $id]),
             ]);
     }
 
     /**
-     * @Route (path="/doUpdate/{id}", name="app_post_doUpdate")
+     * @Route (path="/doUpdate/{id}", name="app_post_doUpdateExperiencia")
      * @param Request $request
      * @Security("has_role('ROLE_USER')")
      */
@@ -109,19 +115,19 @@ class PostController extends Controller
         if ($form->isValid()){
             $a->flush();
 
-            return $this->redirectToRoute('app_index_index');
+            return $this->redirectToRoute('app_proyecto_mensajes');
         }
 
-        return $this->render(':index:form.html.twig',
+        return $this->render(':Proyecto:formExperienciaPeluqueria.html.twig',
             [
                 'form' => $form->createView(),
-                'action' => $this->generateUrl('app_post_doUpdate', ['id' => $id]),
+                'action' => $this->generateUrl('app_proyecto_doUpdateExperiencia', ['id' => $id]),
             ]);
 
     }
 
     /**
-     * @Route (path="/remove/{id}", name="app_post_remove")
+     * @Route (path="/remove/{id}", name="app_proyecto_removeExperiencia")
      * @Security("has_role('ROLE_USER')")
      */
     public function removeAction($id)
@@ -135,7 +141,7 @@ class PostController extends Controller
 
         $this->addFlash('messages', 'post eliminado');
 
-        return $this->redirectToRoute('app_index_index');
+        return $this->redirectToRoute('app_proyecto_mensajes');
     }
 
 

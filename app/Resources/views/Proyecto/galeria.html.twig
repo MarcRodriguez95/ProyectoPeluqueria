@@ -3,20 +3,28 @@
 
 {% block title %} Galería de imagenes {% endblock %}
 {% block body %}
+<h1> Galería de imagenes</h1>
 
 
-    <h1> Galería de imagenes</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <p class="inicio">Aquí podrás ver los peinados que se pueden realizar en la peluquería Andres Perruquers</p>
+
+        </div>
+    </div>
+</div>
+
     {% for imagenes in galeria %}
         <div class="panel panel-primary col-sm-6 col-md-4">
             <div class="panel-body">
                 <tr>
-                    <td><img style="width: 120px; height: 120px" src="{{ asset('images/galeria/' ~ imagenes.titulo) }}"/></td>
+                    <td><img style="width: 120px; height: 120px" src="{{ asset('images/galeria/' ~ imagenes.titulo) }}"/></td><br>
 
                     <b>Categoria:</b> <td>{{ imagenes.categoria }}</td><br>
                     <b>Mensaje:</b>  <td>{{ imagenes.mensaje }}</td><br>
-                    {{ imagenes.rating|rating(5, "fa-1x") }}
-                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fandres-perruquers.herokuapp.com%2F&width=143&layout=button&action=like&size=small&show_faces=true&share=true&height=65&appId" width="143" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-
+                    <td>{{ imagenes.rating|rating(5, "fa-1x") }}</td>
+                    <td><iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fandres-perruquers.herokuapp.com%2F&width=143&layout=button&action=like&size=small&show_faces=true&share=true&height=65&appId" width="143" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe> <a href="https://twitter.com/share" class="twitter-share-button" data-lang="es">Twittear</a> </td>
                     <br>
 
                     {% if (app.user == "Marc")%}
@@ -28,7 +36,7 @@
             </div>
 
         </div>
-
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     {% endfor %}
 
    {% include ':Proyecto:pagination.html.twig' %}

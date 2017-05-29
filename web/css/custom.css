@@ -21,20 +21,68 @@
 }
 /*Aqui empieza mis cambios en el css*/
 
+.btn-success{
+    background-color: #4ac8cf!important;
+}
+
+.btn-success:hover{
+    background-color: #68b1a5!important;
+}
+
+.btn-danger{
+    background-color: #ff9900!important;
+}
+
+.btn-danger:hover{
+    background-color: #e0093a!important;
+}
+
+.inicio{
+    font-size: 150%;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+.footer{
+    background-image: url("../images/upload/footer.jpg");
+    top:87%;
+    opacity:0.7;
+}
+
+.footer > .container {
+    padding-right:15px;
+    padding-left: 15px;
+}
+
 .columna-izquierda{
-    background-color: slategrey;
+    background-image: url("../images/upload/fondo.jpg");
     height: 1000px;
     bottom:2.1em;
-    border: 20px solid slategrey;
-    transform: translate(-90px,0px); /* Standard syntax */
+    transform: translate(-30px); /* Standard syntax */
+    opacity: 0.2;
+    background-size: cover;
+    width: 17%;
 }
 .columna-derecha{
-    background-color: slategrey;
+    background-image: url("../images/upload/fondo.jpg");
     height: 1000px;
     max-height: 100%;
     bottom:2.1em;
-    border: 20px solid slategrey;
     transform: translate(90px,0px); /* Standard syntax */
+    opacity: 0.2;
+    background-size: cover;
+    width: 15%;
+}
+
+.fondo{
+    background-image: url("../images/upload/background_image.jpg");
+    opacity:0.9;
+    position: relative;
+    top:-30px;
+    margin-left: -30px;
+    margin-right: -90px;
+    width: 70%;
+    height: 1000px;
+    background-size: cover;
 }
 
 .masthead img{
@@ -51,5 +99,40 @@
         display: none;
     }
 
+    .fondo{
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;
+        width: 100%;
+    }
+
+    .nav > li > a {
+        padding: 15px 10px;
+    }
+
 
 }
+
+@media only screen and (max-width: 991px) {
+    .navbar{
+        margin-bottom: 0px!important;
+    }
+}
+
+
+
+.direccion{
+    text-align: center;
+    color: ghostwhite;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+p{
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+h1{
+    font-family: Georgia, "Times New Roman", Times, serif;;
+}
+
+.gmap iframe, .gmap object, .gmap embed { width: 100%; }

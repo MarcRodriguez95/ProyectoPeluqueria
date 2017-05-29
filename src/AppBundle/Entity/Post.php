@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use blackknight467\StarRatingBundle\Form\RatingType;
 /**
  * Post
  *
@@ -36,6 +36,12 @@ class Post
     private $mensaje;
 
     /**
+     * @var RatingType
+     * @ORM\Column(name="rating")
+     */
+    private $rating;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
@@ -55,12 +61,7 @@ class Post
      */
     private $user;
 
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comentario", mappedBy="post")
-     *
-     */
-    private $comentario;
+
 
     public function __construct()
     {
@@ -126,24 +127,21 @@ class Post
         return $this->mensaje;
     }
 
+
     /**
-     *
-     *
-     * @param mixed $comentario
+     * @return RatingType
      */
-    public function setComentario($comentario)
+    public function getRating()
     {
-        $this->comentario = $comentario;
+        return $this->rating;
     }
 
     /**
-     *
-     *
-     * @return mixed
+     * @param RatingType $rating
      */
-    public function getComentario()
+    public function setRating($rating)
     {
-        return $this->comentario;
+        $this->rating = $rating;
     }
 
 
