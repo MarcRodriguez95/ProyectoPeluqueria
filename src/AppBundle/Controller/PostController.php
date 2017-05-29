@@ -28,7 +28,7 @@ class PostController extends Controller
             $request->query->getInt('page', 1),
             2
         );
-        return $this->render(':Proyecto:experienciaPeluqueria.html.twig',
+        return $this->render(':Proyecto:ExperienciaPeluqueria.html.twig',
             [
                 'post' => $pagination,
             ]);
