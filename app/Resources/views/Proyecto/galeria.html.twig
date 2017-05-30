@@ -43,7 +43,7 @@
 
     <br>
     <div style="margin-top: 10px">
-    {% if (app.user == "Marc")%}
+    {% if (app.user == "Marc" or app.user == "administrador")%}
         <a class="btn btn-success" href="{{ path('app_imagen_add') }}">Añadir una imagen nueva</a>
     {% endif %}
     </div>
