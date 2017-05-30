@@ -24,7 +24,7 @@
         <br><br>
     {% endfor %}
 
-    {% if (app.user == posts.user) or (app.user == "Marc")%}
+    {% if app.user %}
     <div style="margin-top: 10px">
         <a class="btn btn-success" href="{{ path('app_proyecto_addExperiencia') }}">Añadir un post nuevo</a>
     </div>

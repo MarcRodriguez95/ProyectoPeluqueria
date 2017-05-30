@@ -42,7 +42,7 @@
          <div class="col-md-10 col-sm-10">
                 <p>Si quieres preguntar cualquier cosa o tienes algunas dudas sobre ciertos temas de la peluquería, puedes contactar con nosotros rellenando el siguiente formulario mediante el botón "Enviar consulta". Para poder enviar consultas, tendrás que registrarte en el botón de arriba "Sign Up"</p>
          </div>
-    {% if app.user%}
+    {% if app.user %}
         <div class="col-md-2 col-sm-2">
             <a class="btn btn-success" href="{{ path('app_proyecto_email') }}" >Enviar consulta</a>
         </div>
