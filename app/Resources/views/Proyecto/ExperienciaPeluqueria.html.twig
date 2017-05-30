@@ -8,7 +8,6 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <tr>
-                    <td>{{ posts.id }}</td> <br>
                     <b>Usuario:</b> <td>{{ posts.user }}</td> <br>
                     <b>Titulo:</b> <td>{{ posts.titulo }}</td> <br>
                     <b>Mensaje:</b> <br> <td>{{ posts.mensaje }}</td> <br>
@@ -25,9 +24,11 @@
         <br><br>
     {% endfor %}
 
+    {% if (app.user == posts.user) or (app.user == "Marc")%}
     <div style="margin-top: 10px">
         <a class="btn btn-success" href="{{ path('app_proyecto_addExperiencia') }}">Añadir un post nuevo</a>
     </div>
+    {% endif %}
 
     {% if not doPagination is defined %}
         <div class="navigation">

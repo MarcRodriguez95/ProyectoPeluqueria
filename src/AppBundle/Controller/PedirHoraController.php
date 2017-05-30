@@ -17,6 +17,7 @@ class PedirHoraController extends Controller
     /**
      * @Route (path="/", name="app_proyecto_pedirHora")
      * @param Request $request
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {

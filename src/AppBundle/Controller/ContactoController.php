@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -40,6 +41,7 @@ class ContactoController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/enviar-email", name="app_proyecto_email")
+     * @Security("has_role('ROLE_USER')")
      */
     public function createAction(Request $request)
     {

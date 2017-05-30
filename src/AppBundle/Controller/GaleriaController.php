@@ -27,10 +27,10 @@ class GaleriaController extends Controller
         $m->flush();
 
         $listItems = $repo->findBy(
-            array(),                      // Critere
-            array('id' => 'asc'),        // Tri
-            null,                         // Limite
-            null                          // Offset
+            array(),
+            array('id' => 'asc'),
+            null,
+            null
         );
 
 
