@@ -100,7 +100,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route (path="/doUpdate/{id}", name="app_post_doUpdateExperiencia")
+     * @Route (path="/doUpdate/{id}", name="app_proyecto_doUpdateExperiencia")
      * @param Request $request
      * @Security("has_role('ROLE_USER')")
      */
